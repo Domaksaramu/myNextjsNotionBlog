@@ -2,7 +2,7 @@ import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: '22ffd6279d6c806aa30bc36499bf7580',
+  rootNotionPageId: process.env.NOTION_PAGE_ID,
 
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
@@ -10,8 +10,8 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'Domaksaramu Tech Blog',
-  domain: 'Domaksaramu Tech Blog',
-  author: 'Domaksaramu Tech Blog',
+  domain: 'domaksaramu.vercel.app',
+  author: 'Domaksaramu',
 
   // open graph metadata (optional)
   description: 'Domaksaramu Tech Blog',
@@ -47,7 +47,8 @@ export default siteConfig({
   //   '/bar': '0be6efce9daf42688f65c76b89f8eb27'
   // }
   pageUrlOverrides: null,
-
+  language:'ko-KR',
+  socialImage: process.env.NEXT_PUBLIC_SITE_URL + '/social.png',
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
   navigationStyle: 'default'
