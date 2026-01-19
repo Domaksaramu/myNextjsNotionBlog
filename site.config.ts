@@ -1,8 +1,12 @@
 import { siteConfig } from './lib/site-config'
 
+// Replace the placeholder below with your Notion page ID to use as the
+// default when `NOTION_PAGE_ID` is not present in the environment.
+const DEFAULT_ROOT_NOTION_PAGE_ID = '22ffd6279d6c806aa30bc36499bf7580'
+
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: process.env.NOTION_PAGE_ID,
+  rootNotionPageId: process.env.NOTION_PAGE_ID ?? DEFAULT_ROOT_NOTION_PAGE_ID,
 
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
