@@ -1,0 +1,15 @@
+name: Vercel Cron Deploy
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs at the top of every 6 hours
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        run: |
+          curl -X POST ${{secrets.VERCEL_DEPLOY_HOOK}}
