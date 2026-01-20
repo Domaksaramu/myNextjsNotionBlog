@@ -2,7 +2,7 @@ name: Vercel Cron Deploy
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Runs at the top of every 6 hours
+    - cron: '0 */6 * * *'  # Runs at the top of every 6 hours
   workflow_dispatch:
 
 jobs:
