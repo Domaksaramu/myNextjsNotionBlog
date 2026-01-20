@@ -52,7 +52,6 @@ export default siteConfig({
   // }
   pageUrlOverrides: null,
   language:'ko-KR',
-  socialImage: process.env.NEXT_PUBLIC_SITE_URL + '/social.png',
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
   navigationStyle: 'default'
