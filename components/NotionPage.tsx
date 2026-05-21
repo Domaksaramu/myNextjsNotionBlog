@@ -224,7 +224,7 @@ export function NotionPage({
   }, [site, recordMap, lite])
 
   const keys = Object.keys(recordMap?.block || {})
-  const block = recordMap?.block?.[keys[0]!]?.value
+  const block = recordMap?.block?.[keys[0]!]?.value as PageBlock | undefined
 
   // const isRootPage =
   //   parsePageId(block?.id) === parsePageId(site?.rootNotionPageId)
@@ -251,7 +251,7 @@ export function NotionPage({
     return <Loading />
   }
 
-  if (error || !site || !block) {
+  if (error || !site || !recordMap || !block) {
     return <Page404 site={site} pageId={pageId} error={error} />
   }
 
