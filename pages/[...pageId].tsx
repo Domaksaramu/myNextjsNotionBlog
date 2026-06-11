@@ -9,7 +9,10 @@ import { type PageProps, type Params } from '@/lib/types'
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context
 ) => {
-  const rawPageId = context.params?.pageId as string
+  const pageParam = context.params?.pageId
+  const rawPageId = Array.isArray(pageParam)
+    ? pageParam.join('/')
+    : pageParam ?? ''
 
   try {
     const props = await resolveNotionPage(domain, rawPageId)
@@ -34,8 +37,6 @@ export async function getStaticPaths() {
 
   const siteMap = await getSiteMap()
 
-  // Combine sitemap paths with URL overrides (e.g., /articles, /notes)
-  // URL overrides might not be in the sitemap if not directly linked from root
   const allPageIds = [
     ...new Set([
       ...Object.keys(siteMap.canonicalPageMap),
@@ -44,7 +45,9 @@ export async function getStaticPaths() {
   ]
 
   const staticPaths = {
-    paths: allPageIds.map((pageId) => ({ params: { pageId } })),
+    paths: allPageIds.map((pageId) => ({
+      params: { pageId: pageId.split('/') }
+    })),
     fallback: true
   }
 
