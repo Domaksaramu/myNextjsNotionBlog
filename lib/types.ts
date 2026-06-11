@@ -23,7 +23,7 @@ export interface ExtendedTweetRecordMap extends ExtendedRecordMap {
 }
 
 export interface Params extends ParsedUrlQuery {
-  pageId: string
+  pageId: string[]
 }
 
 export interface Site {

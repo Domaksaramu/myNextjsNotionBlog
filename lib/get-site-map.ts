@@ -1,3 +1,4 @@
+import { type Block } from 'notion-types'
 import { getAllPagesInSpace, getPageProperty, uuidToId } from 'notion-utils'
 import pMemoize from 'p-memoize'
 
@@ -39,7 +40,7 @@ async function getAllPagesImpl(
   rootNotionPageId: string,
   rootNotionSpaceId?: string,
   {
-    maxDepth = 1
+    maxDepth = 5
   }: {
     maxDepth?: number
   } = {}
@@ -60,7 +61,7 @@ async function getAllPagesImpl(
         throw new Error(`Error loading page "${pageId}"`)
       }
 
-      const block = recordMap.block[pageId]?.value
+      const block = recordMap.block[pageId]?.value as Block | undefined
       if (
         !(getPageProperty<boolean | null>('Public', block!, recordMap) ?? true)
       ) {
